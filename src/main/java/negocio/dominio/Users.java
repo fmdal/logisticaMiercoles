@@ -16,8 +16,9 @@ public abstract class Users {
 	public Users() {
 	}
 
-	public Users(int user_ID, String contrasenia, String nombre, String apellido, Calendar fecha_nac, String telefono, boolean perfil) {
-		
+	public Users(int user_ID, String contrasenia, String nombre, String apellido, Calendar fecha_nac, String telefono,
+			boolean perfil) {
+
 		this.user_ID = user_ID;
 		this.contrasenia = contrasenia;
 		this.nombre = nombre;
@@ -25,7 +26,7 @@ public abstract class Users {
 		this.fecha_nac = fecha_nac;
 		this.telefono = telefono;
 	}
-	
+
 	public int getUser_ID() {
 		return user_ID;
 	}

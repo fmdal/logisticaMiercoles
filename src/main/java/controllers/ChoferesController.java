@@ -50,7 +50,7 @@ public class ChoferesController extends HttpServlet {
 
 		if (request.getParameter("accion") != null) {
 
-			iDAO<Choferes> choferesDAO = ChoferesFactory.getImplementation("DB"); 
+			iDAO<Choferes> choferesDAO = ChoferesFactory.getImplementation("DB");
 
 			if (request.getParameter("accion").equals("alta")) {
 				Choferes chofer = new Choferes();
@@ -62,7 +62,6 @@ public class ChoferesController extends HttpServlet {
 				chofer.setApellido(request.getParameter("apellido"));
 //				chofer.setFechaNac(request.getParameter("fecha_nac"));
 				chofer.setCategoria(request.getParameter("categoria"));
-
 
 				choferesDAO.add(chofer);
 

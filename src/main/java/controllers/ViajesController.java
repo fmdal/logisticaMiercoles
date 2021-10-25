@@ -50,7 +50,7 @@ public class ViajesController extends HttpServlet {
 
 		if (request.getParameter("accion") != null) {
 
-			iDAO<Admins> adminsDAO = AdminsFactory.getImplementation("DB"); 
+			iDAO<Admins> adminsDAO = AdminsFactory.getImplementation("DB");
 
 			if (request.getParameter("accion").equals("alta")) {
 				Viajes viaje = new Viajes();
@@ -62,10 +62,9 @@ public class ViajesController extends HttpServlet {
 				viaje.setDistancia(distancia);
 				viaje.setOrigen(origen);
 				viaje.setViajesID(viajes_ID);
-				
-				
+
 				setUserID(request.getParameter("userID"));
-								
+
 				viaje.setTelefono(Long.parseLong(request.getParameter("telefono")));
 				viaje.setContrasenia(request.getParameter("contrasenia"));
 				viaje.setNombre(request.getParameter("nombre"));

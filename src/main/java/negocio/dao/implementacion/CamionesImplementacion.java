@@ -2,10 +2,9 @@ package negocio.dao.implementacion;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
 
 import core.Conexion;
 import negocio.dao.iDAO;
@@ -47,7 +46,6 @@ public class CamionesImplementacion implements iDAO<Camiones> {
 	}
 
 	@Override
-
 	public ArrayList<Users> getLista() {
 
 		ArrayList<Camiones> camiones = new ArrayList<>();
@@ -94,7 +92,6 @@ public class CamionesImplementacion implements iDAO<Camiones> {
 	}
 
 	@Override
-
 	public Camion findId(long l) {
 
 		Connection con = null;
@@ -143,7 +140,6 @@ public class CamionesImplementacion implements iDAO<Camiones> {
 	}
 
 	@Override
-
 	public boolean deleteById(long l) {
 
 		String sql = "UPDATE camiones SET activo=0 WHERE patente=?";

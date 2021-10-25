@@ -46,13 +46,12 @@ public class CamionesController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	
-		
+
 		String destino;
 
 		if (request.getParameter("accion") != null) {
 
-			iDAO<Camiones> camionesDAO = CamionesFactory.getImplementation("DB"); 
+			iDAO<Camiones> camionesDAO = CamionesFactory.getImplementation("DB");
 
 			if (request.getParameter("accion").equals("alta")) {
 				Camiones camion = new Camiones();

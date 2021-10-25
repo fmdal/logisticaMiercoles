@@ -17,12 +17,12 @@ public class ViajesImplementacion implements iDAO<Viajes> {
 		@Override
 		public boolean add(Viajes elemento) {
 
-			String sql = "INSERT INTO viajes(viajesID, chofer, camion, consumoNafta, trayecto) VALUES (?,?,?,?,?)";
+		String sql = "INSERT INTO viajes(viajesID, chofer, camion, consumoNafta, trayecto) VALUES (?,?,?,?,?)";
 
-			try {
-				Connection con = Conexion.getConnection();
+		try {
+			Connection con = Conexion.getConnection();
 
-				PreparedStatement ps = con.prepareStatement(sql);
+			PreparedStatement ps = con.prepareStatement(sql);
 
 				ps.setString(1, elemento.getViajes_ID());
 				ps.setString(2, elemento.getChofer());
@@ -31,139 +31,138 @@ public class ViajesImplementacion implements iDAO<Viajes> {
 				
 				ps.execute();
 
-				ps.close();
+			ps.execute();
 
-				return true;
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			ps.close();
 
-			return false;
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
+		return false;
+	}
 
-		@Override
-		public Object get(Object elemento) {
-			// TODO Auto-generated method stub
-			return null;
-		}
+	@Override
+	public Object get(Object elemento) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	@Override
+	public boolean save() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-		@Override
-		public boolean save() {
-			// TODO Auto-generated method stub
-			return false;
-		}
+	@Override
 
-		@Override
+	public boolean delete() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-		public boolean delete() {
-			// TODO Auto-generated method stub
-			return false;
-		}
+	@Override
+	public ArrayList<Viajes> getLista() {
 
-		@Override
-		public ArrayList<Viajes> getLista() {
+		ArrayList<Viajes> listaViajes = new ArrayList<>();
 
-			ArrayList<Viajes> listaViajes = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement prep = null;
 
-			Connection con = null;
-			PreparedStatement prep = null;
+		try {
+			con = Conexion.getConnection();
+			prep = con.prepareStatement("SELECT * FROM listaViajes");
 
-			try {
-				con = Conexion.getConnection();
-				prep = con.prepareStatement("SELECT * FROM listaViajes");
+			ResultSet rs = prep.executeQuery();
 
-				ResultSet rs = prep.executeQuery();
-
-				while (rs.next()) {
-
-					Viajes viaje = new Viajes();
-
-					viaje.setViajesID(rs.getint("viajesID"));
-					viaje.setChofer((Choferes) rs).getChofer("chofer");
-					viaje.setCamion(rs.getString("camion"));
-					viaje.setConsumoNafta(rs.getDate("consumoNafta"));
-					viaje.setTrayectos(rs.getLong("trayectos"));
-					listaViajes.add(viaje);
-				}
-				prep.close();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-			return listaViajes;
-		}
-
-		@Override
-		@Override
-		@Override
-		@Override
-		@Override
-		@Override
-		@Override
-		public Viajes findId(long l) {
-
-			Connection con = null;
-			PreparedStatement prep = null;
-
-			try {
-				String sql = "SELECT * FROM viajes WHERE id=?";
-
-				con = Conexion.getConnection();
-				prep = con.prepareStatement(sql);
-
-				prep.setInt(1, (int) id);
-
-				ResultSet rs = prep.executeQuery();
+			while (rs.next()) {
 
 				Viajes viaje = new Viajes();
 
-				if (rs.next()) {
-					viaje.setViajesID(rs.getInt("viajesID"));
-					viaje.setChofer(((Viajes) rs).getChofer());
-					viaje.setCamion(((Viajes) rs).getCamion());
-					viaje.setConsumoNafta(rs.getFloat("consumoNafta"));
-					viaje.setTrayectos(((Viajes) rs).getTrayectos());
-					viaje.add(viaje);
-
-				}
-				return viaje;
-			} catch (Exception e) {
-				e.printStackTrace();
-				return null;
+				viaje.setViajesID(rs.getint("viajesID"));
+				viaje.setChofer((Choferes) rs).getChofer("chofer");
+				viaje.setCamion(rs.getString("camion"));
+				viaje.setConsumoNafta(rs.getDate("consumoNafta"));
+				viaje.setTrayectos(rs.getLong("trayectos"));
+				listaViajes.add(viaje);
 			}
+			prep.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
-		@Override
-		@Override
-		@Override
-		@Override
-		public boolean deleteById(long l) {
+		return listaViajes;
+	}
 
-			String sql = "UPDATE viajes SET activo=0 WHERE viajesID=?";
+	@Override
+	@Override
+	@Override
+	@Override
+	@Override
+	@Override
+	@Override
+	public Viajes findId(long l) {
 
-			try {
-				Connection con = Conexion.getConnection();
+		Connection con = null;
+		PreparedStatement prep = null;
 
-				PreparedStatement ps = con.prepareStatement(sql);
+		try {
+			String sql = "SELECT * FROM viajes WHERE id=?";
 
-				ps.setLong(1, l);
+			con = Conexion.getConnection();
+			prep = con.prepareStatement(sql);
 
-				ps.execute();
+			prep.setInt(1, (int) id);
 
-				ps.close();
+			ResultSet rs = prep.executeQuery();
 
-				return true;
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			Viajes viaje = new Viajes();
+
+			if (rs.next()) {
+				viaje.setViajesID(rs.getInt("viajesID"));
+				viaje.setChofer(((Viajes) rs).getChofer());
+				viaje.setCamion(((Viajes) rs).getCamion());
+				viaje.setConsumoNafta(rs.getFloat("consumoNafta"));
+				viaje.setTrayectos(((Viajes) rs).getTrayectos());
+				viaje.add(viaje);
+
 			}
+			return viaje;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
-			return false;
+	@Override
+	@Override
+	@Override
+	@Override
+	public boolean deleteById(long l) {
+
+		String sql = "UPDATE viajes SET activo=0 WHERE viajesID=?";
+
+		try {
+			Connection con = Conexion.getConnection();
+
+			PreparedStatement ps = con.prepareStatement(sql);
+
+			ps.setLong(1, l);
+
+			ps.execute();
+
+			ps.close();
+
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
+		return false;
+	}
 
 }

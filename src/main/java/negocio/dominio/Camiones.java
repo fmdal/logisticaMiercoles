@@ -1,7 +1,7 @@
 package negocio.dominio;
 
 public class Camiones {
-	
+
 	protected int camion_ID;
 	protected String patente;
 	protected String marca;
@@ -11,9 +11,11 @@ public class Camiones {
 	protected double litrosxkm;
 	protected boolean disponible;
 
-	public Camiones () {}
-	
-	public Camiones (int camion_ID, String patente, String marca, String modelo, int tanque_nafta, int peso_max, double litrosxkm, boolean disponible) {
+	public Camiones() {
+	}
+
+	public Camiones(int camion_ID, String patente, String marca, String modelo, int tanque_nafta, int peso_max,
+			double litrosxkm, boolean disponible) {
 		this.camion_ID = camion_ID;
 		this.patente = patente;
 		this.marca = marca;
@@ -23,7 +25,7 @@ public class Camiones {
 		this.litrosxkm = litrosxkm;
 		this.disponible = disponible;
 	}
-	
+
 	public int getCamion_ID() {
 		return camion_ID;
 	}
@@ -86,5 +88,5 @@ public class Camiones {
 
 	public void setDisponible(boolean disponible) {
 		this.disponible = disponible;
-	}	
+	}
 }

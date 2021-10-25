@@ -8,11 +8,13 @@ public class Viajes {
 	protected float consumo_nafta;
 	protected String origen;
 	protected String destino;
-	protected double distancia; 
-	
-	public Viajes () {}
-	
-	public Viajes (int viajesID, Choferes chofer, Camiones camion, float consumo_nafta, String origen, String destino, double distancia) {
+	protected double distancia;
+
+	public Viajes() {
+	}
+
+	public Viajes(int viajesID, Choferes chofer, Camiones camion, float consumo_nafta, String origen, String destino,
+			double distancia) {
 		this.viajes_ID = viajes_ID;
 		this.chofer = chofer;
 		this.consumo_nafta = consumo_nafta;
@@ -20,7 +22,7 @@ public class Viajes {
 		this.destino = destino;
 		this.distancia = distancia;
 	}
-	
+
 	public int getViajes_ID() {
 		return viajes_ID;
 	}

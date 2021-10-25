@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import core.Conexion;
 import negocio.dao.iDAO;
+import negocio.dominio.Camiones;
 import negocio.dominio.Choferes;
 import negocio.dominio.Viajes;
 
@@ -23,12 +24,13 @@ public class ViajesImplementacion implements iDAO<Viajes> {
 
 				PreparedStatement ps = con.prepareStatement(sql);
 
-			ps.setString(1, elemento.getViajes_ID());
-			ps.setString(2, elemento.getChofer());
-			ps.setString(3, elemento.getCamion());
-			ps.setString(4, elemento.getConsumo_nafta());
-
-			ps.execute();
+				
+				ps.setInt(1, elemento.getViajes_ID());
+//				ps.setString(2, elemento.getChofer());
+//				ps.setString(3, elemento.getCamion());
+				ps.setDouble(4, elemento.getConsumo_nafta());
+		
+				ps.execute();
 
 				ps.close();
 
@@ -64,7 +66,7 @@ public class ViajesImplementacion implements iDAO<Viajes> {
 		@Override
 		public ArrayList<Viajes> getLista() {
 
-			ArrayList<Viajes> listaViajes = new ArrayList<>();
+			ArrayList<Viajes> lista_viajes = new ArrayList<>();
 
 			Connection con = null;
 			PreparedStatement prep = null;
@@ -78,13 +80,20 @@ public class ViajesImplementacion implements iDAO<Viajes> {
 				while (rs.next()) {
 
 					Viajes viaje = new Viajes();
+					
+					protected int viajes_ID;
+					protected Choferes chofer;
+					protected Camiones camion;
+					protected float consumo_nafta;
+					protected String origen;
+					protected String destino;
+					protected double distancia;
 
-					viaje.setViajesID(rs.getint("viajesID"));
+					viaje.setViajes_ID(rs.getint("viajes_ID"));
 					viaje.setChofer((Choferes) rs).getChofer("chofer");
 					viaje.setCamion(rs.getString("camion"));
-					viaje.setConsumoNafta(rs.getDate("consumoNafta"));
-					viaje.setTrayectos(rs.getLong("trayectos"));
-					listaViajes.add(viaje);
+					viaje.setConsumo_nafta(rs.getDate("consumo_nafta"));
+					lista_viajes.add(viaje);
 				}
 				prep.close();
 
@@ -95,50 +104,48 @@ public class ViajesImplementacion implements iDAO<Viajes> {
 			return listaViajes;
 		}
 
-<<<<<<< HEAD
-		@Override
-		public Viajes findId(long l) {
-=======
-		return listaViajes;
-	}
+//// <<<<<<< HEAD
+//		@Override
+//		public Viajes findIdViajes(long l) {
+//// =======
+//		return listaViajes;
+//	}
+
 
 	@Override
 	public Viajes findId(long l) {
 
 		Connection con = null;
 		PreparedStatement prep = null;
->>>>>>> master
+// >>>>>>> master
 
-			Connection con = null;
-			PreparedStatement prep = null;
+		try {
+			String sql = "SELECT * FROM viajes WHERE id=?";
 
-			try {
-				String sql = "SELECT * FROM viajes WHERE id=?";
+			con = Conexion.getConnection();
+			prep = con.prepareStatement(sql);
 
-				con = Conexion.getConnection();
-				prep = con.prepareStatement(sql);
+			prep.setInt(1, (int) id);
 
-				prep.setInt(1, (int) id);
+			ResultSet rs = prep.executeQuery();
 
-				ResultSet rs = prep.executeQuery();
+			Viajes viaje = new Viajes();
 
-				Viajes viaje = new Viajes();
+			if (rs.next()) {
+				viaje.setViajesID(rs.getInt("viajesID"));
+				viaje.setChofer(((Viajes) rs).getChofer());
+				viaje.setCamion(((Viajes) rs).getCamion());
+				viaje.setConsumoNafta(rs.getFloat("consumoNafta"));
+				viaje.setTrayectos(((Viajes) rs).getTrayectos());
+				viaje.add(viaje);
 
-				if (rs.next()) {
-					viaje.setViajesID(rs.getInt("viajesID"));
-					viaje.setChofer(((Viajes) rs).getChofer());
-					viaje.setCamion(((Viajes) rs).getCamion());
-					viaje.setConsumoNafta(rs.getFloat("consumoNafta"));
-					viaje.setTrayectos(((Viajes) rs).getTrayectos());
-					viaje.add(viaje);
-
-				}
-				return viaje;
-			} catch (Exception e) {
-				e.printStackTrace();
-				return null;
 			}
+			return viaje;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
 		}
+	}
 
 		@Override
 		public boolean deleteById(long l) {

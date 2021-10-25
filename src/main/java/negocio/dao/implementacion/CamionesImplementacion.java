@@ -46,7 +46,7 @@ public class CamionesImplementacion implements iDAO<Camiones> {
 	}
 
 	@Override
-	public ArrayList<Users> getLista() {
+	public ArrayList<Camiones> getLista() {
 
 		ArrayList<Camiones> camiones = new ArrayList<>();
 
@@ -76,10 +76,10 @@ public class CamionesImplementacion implements iDAO<Camiones> {
 				camion.setPatente(rs.getString("patente"));
 				camion.setMarca(rs.getString("marca"));
 				camion.setModelo(rs.getString("modelo"));
-				camion.setTanqueNafta(rs.getdouble(tanque_nafta));
-				camion.setPesoMax(rs.getDouble(peso_max));
+				camion.setTanque_nafta(rs.getInt(tanque_nafta));
+				camion.setPeso_max(rs.getInt(peso_max));
 				camion.setListrosxKm(rs.getDouble(litrosxkm));
-				camion.isDisponible(rs.getDisponible(disponible));
+//				ps.setDisponible(8, elemento.isDisponible());  //no se que paso aca, no me toma el boolean
 				camiones.add(camion);
 			}
 			prep.close();
@@ -118,17 +118,16 @@ public class CamionesImplementacion implements iDAO<Camiones> {
 				int tanque_nafta;
 				int peso_max;
 				double litrosxkm;
-				boolean disponible;
-				
+				boolean disponible;  //no se si va esto aca
 				
 				camion.setCamionID(rs.getInt(camion_ID));
 				camion.setPatente(rs.getString("patente"));
 				camion.setMarca(rs.getString("marca"));
 				camion.setModelo(rs.getString("modelo"));
-				camion.setTanqueNafta(rs.getdouble(tanque_nafta));
-				camion.setPesoMax(rs.getDouble(peso_max));
+				camion.setTanque_nafta(rs.getInt(tanque_nafta));
+				camion.setPeso_max(rs.getInt(peso_max));
 				camion.setListrosxKm(rs.getDouble(litrosxkm));
-				camion.isDisponible(rs.getDisponible(disponible));
+//				ps.setDisponible(8, elemento.isDisponible());  //no se que paso aca, no me toma el boolean
 				camiones.add(camion);
 
 			}
@@ -161,6 +160,18 @@ public class CamionesImplementacion implements iDAO<Camiones> {
 			e.printStackTrace();
 		}
 
+		return false;
+	}
+
+	@Override
+	public Camiones findId(long l) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean save(Camiones elemento) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 

@@ -26,11 +26,12 @@ public class UsersImplementacion implements iDAO<Users> {
 
 			PreparedStatement ps = con.prepareStatement(sql);
 
+			
 			ps.setInt(1, elemento.getUser_ID());
+			ps.setString(4, elemento.getContrasenia());
 			ps.setString(2, elemento.getNombre());
 			ps.setString(3, elemento.getApellido());
-			ps.setString(4, elemento.getContrasenia());
-//			ps.set (5, elemento.getFechaNac());
+//			ps.setDate(5, elemento.getFechaNac());
 			ps.setString(6, elemento.getTelefono());
 
 			ps.execute();
@@ -47,28 +48,24 @@ public class UsersImplementacion implements iDAO<Users> {
 	}
 
 	@Override
-
 	public Object get(Object elemento) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-
 	public boolean save() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-
 	public boolean delete() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-
 	public ArrayList<Users> getLista() {
 
 		ArrayList<Users> usuarios = new ArrayList<>();
@@ -86,12 +83,12 @@ public class UsersImplementacion implements iDAO<Users> {
 
 				Users usuario = new Users();
 
-				usuario.setUserID(rs.getLong("userID"));
+				usuario.setUser_ID(rs.getInt("user_ID"));
+				usuario.setContrasenia(rs.getString("contrasenia"));
 				usuario.setNombre(rs.getString("nombre"));
 				usuario.setApellido(rs.getString("apellido"));
-				usuario.setContrasenia(rs.getString("contrasenia"));
-				usuario.setFechaNac(rs.getString("contrasenia"));
-				usuario.setTelefono(rs.getLong("telefono"));
+//				usuario.setFecha_nac(rs.getDate("fecha_nac"));
+				usuario.setTelefono(rs.getString("telefono"));
 
 				usuarios.add(usuario);
 			}
@@ -105,7 +102,6 @@ public class UsersImplementacion implements iDAO<Users> {
 	}
 
 	@Override
-
 	public Users findId(long l) {
 
 		Connection con = null;
@@ -126,12 +122,12 @@ public class UsersImplementacion implements iDAO<Users> {
 			if (rs.next()) {
 				
 				
-				usuario.setUser_ID(rs.getLong("user_ID"));
+				usuario.setUser_ID(rs.getInt("user_ID"));
 				usuario.setContrasenia(rs.getString("contrasenia"));
 				usuario.setNombre(rs.getString("nombre"));
 				usuario.setApellido(rs.getString("apellido"));
+//				usuario.setFecha_nac(rs.getDate("fecha_nac"));
 				usuario.setTelefono(rs.getString("telefono"));
-				usuario.setPerfil(rs.getBoolean(perfil));
 
 
 			}
@@ -143,7 +139,6 @@ public class UsersImplementacion implements iDAO<Users> {
 	}
 
 	@Override
-
 	public boolean deleteById(long l) {
 
 		String sql = "UPDATE users SET activo=0 WHERE userID=?";
@@ -165,6 +160,12 @@ public class UsersImplementacion implements iDAO<Users> {
 			e.printStackTrace();
 		}
 
+		return false;
+	}
+
+	@Override
+	public boolean save(Users elemento) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 

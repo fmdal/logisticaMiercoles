@@ -20,16 +20,16 @@ public class CamionesImplementacion implements iDAO<Camiones> {
 		String sql = "INSERT INTO camiones(patente, marca, modelo, tanqueNafta, pesoMax, litrosxKm) VALUES (?,?,?,?,?,?)";
 
 		try {
-			Connection con = Conexion.getConnection();
+			Connection con = Conexion.getConnection(); // resolver conexion
 
 			PreparedStatement ps = con.prepareStatement(sql);
 
 			ps.setString(1, elemento.getPatente());
 			ps.setString(2, elemento.getMarca());
 			ps.setString(3, elemento.getModelo());
-			ps.setDouble(4, elemento.getTanqueNafta());
-			ps.setDouble(5, elemento.getPesoMax());
-			ps.setDouble(6, elemento.getLitrosxKm());
+			ps.setInt(4, elemento.getTanque_nafta());
+			ps.setInt(5, elemento.getPeso_max());
+			ps.setDouble(6, elemento.getLitrosxkm());
 
 			ps.execute();
 

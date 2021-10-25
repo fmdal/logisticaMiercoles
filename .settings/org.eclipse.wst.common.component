@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-        
-    <wb-module deploy-name="logisticaMiercole">
-                
-        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
-                
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-                
-        <property name="java-output-path" value="/logisticaMiercole/build/classes"/>
-        <property name="context-root" value="logisticaMiercole"/>
             
-    </wb-module>
     
+    <wb-module deploy-name="logisticaMiercoles">
+                        
+        
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+                        
+        
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+                        
+        
+        <property name="java-output-path" value="/logisticaMiercoles/build/classes"/>
+        <property name="context-root" value="logisticaMiercoles"/>
+                    
+    
+    </wb-module>
+        
+
 </project-modules>

@@ -55,7 +55,17 @@ public class ViajesController extends HttpServlet {
 			if (request.getParameter("accion").equals("alta")) {
 				Viajes viaje = new Viajes();
 
-				viaje.setUserID(request.getParameter("userID"));
+				viaje.setCamion(camion);
+				viaje.setChofer(chofer);
+				viaje.setConsumo_nafta(consumo_nafta);
+				viaje.setDestino(destino);
+				viaje.setDistancia(distancia);
+				viaje.setOrigen(origen);
+				viaje.setViajesID(viajes_ID);
+				
+				
+				setUserID(request.getParameter("userID"));
+								
 				viaje.setTelefono(Long.parseLong(request.getParameter("telefono")));
 				viaje.setContrasenia(request.getParameter("contrasenia"));
 				viaje.setNombre(request.getParameter("nombre"));

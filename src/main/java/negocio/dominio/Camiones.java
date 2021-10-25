@@ -6,14 +6,14 @@ public class Camiones {
 	protected String patente;
 	protected String marca;
 	protected String modelo;
-	protected double tanque_nafta;
-	protected double peso_max;
+	protected int tanque_nafta;
+	protected int peso_max;
 	protected double litrosxkm;
 	protected boolean disponible;
 
 	public Camiones () {}
 	
-	public Camiones (int camion_ID, String patente, String marca, String modelo, double tanque_nafta, double peso_max, double litrosxkm, boolean disponible) {
+	public Camiones (int camion_ID, String patente, String marca, String modelo, int tanque_nafta, int peso_max, double litrosxkm, boolean disponible) {
 		this.camion_ID = camion_ID;
 		this.patente = patente;
 		this.marca = marca;
@@ -56,19 +56,19 @@ public class Camiones {
 		this.modelo = modelo;
 	}
 
-	public double getTanque_nafta() {
+	public int getTanque_nafta() {
 		return tanque_nafta;
 	}
 
-	public void setTanque_nafta(double tanque_nafta) {
+	public void setTanque_nafta(int tanque_nafta) {
 		this.tanque_nafta = tanque_nafta;
 	}
 
-	public double getPeso_max() {
+	public int getPeso_max() {
 		return peso_max;
 	}
 
-	public void setPeso_max(double peso_max) {
+	public void setPeso_max(int peso_max) {
 		this.peso_max = peso_max;
 	}
 

@@ -26,8 +26,8 @@ public abstract class Users {
 		this.telefono = telefono;
 	}
 	
-	public int getUserID() {
-	return user_ID;
+	public int getUser_ID() {
+		return user_ID;
 	}
 
 	public void setUser_ID(int user_ID) {
@@ -80,5 +80,5 @@ public abstract class Users {
 
 	public void setPerfil(boolean perfil) {
 		this.perfil = perfil;
-	}	
+	}
 }

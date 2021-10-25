@@ -25,7 +25,7 @@ public class Viajes {
 		return viajes_ID;
 	}
 
-	public void setViajesID(int viajesID) {
+	public void setViajes_ID(int viajes_ID) {
 		this.viajes_ID = viajes_ID;
 	}
 
@@ -76,4 +76,5 @@ public class Viajes {
 	public void setDistancia(double distancia) {
 		this.distancia = distancia;
 	}
+
 }

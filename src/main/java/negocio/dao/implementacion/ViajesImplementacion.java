@@ -15,8 +15,6 @@ import negocio.dominio.Viajes;
 public class ViajesImplementacion implements iDAO<Viajes> {
 
 		@Override
-		@Override
-		@Override
 		public boolean add(Viajes elemento) {
 
 			String sql = "INSERT INTO viajes(viajesID, chofer, camion, consumoNafta, trayecto) VALUES (?,?,?,?,?)";
@@ -26,11 +24,10 @@ public class ViajesImplementacion implements iDAO<Viajes> {
 
 				PreparedStatement ps = con.prepareStatement(sql);
 
-				ps.setString(1, elemento.getViajesID());
+				ps.setString(1, elemento.getViajes_ID());
 				ps.setString(2, elemento.getChofer());
 				ps.setString(3, elemento.getCamion());
-				ps.setString(4, elemento.getConsumoNafta());
-				ps.setString(5, elemento.getTrayectos());
+				ps.setString(4, elemento.getConsumo_nafta());
 				
 				ps.execute();
 

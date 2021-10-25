@@ -23,13 +23,15 @@ public class CamionesImplementacion implements iDAO<Camiones> {
 			Connection con = Conexion.getConnection(); // resolver conexion
 
 			PreparedStatement ps = con.prepareStatement(sql);
-
-			ps.setString(1, elemento.getPatente());
-			ps.setString(2, elemento.getMarca());
-			ps.setString(3, elemento.getModelo());
-			ps.setInt(4, elemento.getTanque_nafta());
-			ps.setInt(5, elemento.getPeso_max());
-			ps.setDouble(6, elemento.getLitrosxkm());
+			
+			ps.setInt (1, elemento.getCamion_ID());
+			ps.setString(2, elemento.getPatente());
+			ps.setString(3, elemento.getMarca());
+			ps.setString(4, elemento.getModelo());
+			ps.setInt(5, elemento.getTanque_nafta());
+			ps.setInt(6, elemento.getPeso_max());
+			ps.setDouble(7, elemento.getLitrosxkm());
+//			ps.setDisponible(8, elemento.isDisponible());  //no se que paso aca, no me toma el boolean
 
 			ps.execute();
 
@@ -62,13 +64,24 @@ public class CamionesImplementacion implements iDAO<Camiones> {
 			while (rs.next()) {
 
 				Camiones camion = new Camiones();
-
+				
+				int camion_ID;
+				String patente;
+				String marca;
+				String modelo;
+				int tanque_nafta;
+				int peso_max;
+				double litrosxkm;
+				boolean disponible;  //no se si va esto aca
+				
+				camion.setCamionID(rs.getInt(camion_ID));
 				camion.setPatente(rs.getString("patente"));
 				camion.setMarca(rs.getString("marca"));
 				camion.setModelo(rs.getString("modelo"));
-				camion.setTanqueNafta(rs.getdouble("tanqueNafta"));
-				camion.setPesoMax(rs.getDouble("pesoMax"));
-				camion.setListrosxKm(rs.getDouble("litrosxKm"));
+				camion.setTanqueNafta(rs.getdouble(tanque_nafta));
+				camion.setPesoMax(rs.getDouble(peso_max));
+				camion.setListrosxKm(rs.getDouble(litrosxkm));
+				camion.isDisponible(rs.getDisponible(disponible));
 				camiones.add(camion);
 			}
 			prep.close();
@@ -100,12 +113,26 @@ public class CamionesImplementacion implements iDAO<Camiones> {
 			Camiones camion = new Camiones();
 
 			if (rs.next()) {
-				camion.setUserID(rs.getString("patente"));
-				camion.setNombre(rs.getString("marca"));
-				camion.setApellido(rs.getString("modelo"));
-				camion.setContrasenia(rs.getdouble("tanqueNafta"));
-				camion.setFechaNac(rs.getDouble("pesoMax"));
-				camion.setTelefono(rs.getDouble("litrosxKm"));
+				
+				int camion_ID;
+				String patente;
+				String marca;
+				String modelo;
+				int tanque_nafta;
+				int peso_max;
+				double litrosxkm;
+				boolean disponible;
+				
+				
+				camion.setCamionID(rs.getInt(camion_ID));
+				camion.setPatente(rs.getString("patente"));
+				camion.setMarca(rs.getString("marca"));
+				camion.setModelo(rs.getString("modelo"));
+				camion.setTanqueNafta(rs.getdouble(tanque_nafta));
+				camion.setPesoMax(rs.getDouble(peso_max));
+				camion.setListrosxKm(rs.getDouble(litrosxkm));
+				camion.isDisponible(rs.getDisponible(disponible));
+				camiones.add(camion);
 
 			}
 			return camion;

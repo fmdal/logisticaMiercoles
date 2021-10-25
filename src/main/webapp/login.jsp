@@ -1,6 +1,11 @@
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navbar.jsp"></jsp:include>
 
+
+
+
+
+
 <div class="container" style="padding: 20px">
 	<form method="post" action="UsersController">
 		<div style="text-align: center;">
@@ -21,3 +26,38 @@
 </div>
 
 <jsp:include page="footer.html"></jsp:include>
+
+<!-- <!DOCTYPE html> -->
+<!-- <html> -->
+<!-- <body> -->
+ 
+<!-- <form action="Login" method="post"> -->
+ 
+<!-- <table> -->
+ 
+<!-- <tr> -->
+ 
+<!-- <td>Name:</td> -->
+ 
+ 
+<!-- <td><input type="text" name="userName"></td> -->
+ 
+<!-- </tr> -->
+ 
+ 
+<!-- <tr> -->
+ 
+<!-- <td>Password:</td> -->
+ 
+ 
+<!-- <td><input type="password" name="userPassword"></td> -->
+ 
+<!-- </tr> -->
+ 
+<!-- </table> -->
+ 
+<!-- <input type="submit" value="Login"> -->
+<!-- </form> -->
+ 
+<!-- </body> -->
+<!-- </html> -->

@@ -59,8 +59,8 @@ public class CamionesController extends HttpServlet {
 
 				camion.setPatente(request.getParameter("patente"));
 				camion.setContrasenia(request.getParameter("contrasenia"));
-				camion.setTanqueNafta(Double.parseDouble(request.getParameter("telefono")));
-				camion.setPesoMax(Double.parseDouble(request.getParameter("pesoMax")));
+				camion.setTanque_nafta(Double.parseDouble(request.getParameter("telefono")));
+				camion.setPeso_max(Double.parseDouble(request.getParameter("pesoMax")));
 				camion.setLitrosxKm(Double.parseDouble(request.getParameter("listrosxKm")));
 
 				camionesDAO.add(camion);

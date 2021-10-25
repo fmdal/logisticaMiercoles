@@ -2,8 +2,10 @@ package negocio.dao.implementacion;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
 
@@ -13,6 +15,7 @@ import negocio.dominio.Users;
 
 public class UsersImplementacion implements iDAO<Users> {
 
+	
 	@Override
 
 	public boolean add(Users elemento) {
@@ -24,11 +27,11 @@ public class UsersImplementacion implements iDAO<Users> {
 
 			PreparedStatement ps = con.prepareStatement(sql);
 
-			ps.setInt(1, elemento.getUserID());
+			ps.setInt(1, elemento.getUser_ID());
 			ps.setString(2, elemento.getNombre());
 			ps.setString(3, elemento.getApellido());
 			ps.setString(4, elemento.getContrasenia());
-//			ps.setString(5, elemento.getFechaNac());
+//			ps.set (5, elemento.getFechaNac());
 			ps.setString(6, elemento.getTelefono());
 
 			ps.execute();
@@ -122,12 +125,15 @@ public class UsersImplementacion implements iDAO<Users> {
 			Users usuario = new Users();
 
 			if (rs.next()) {
-				usuario.setUserID(rs.getLong("userID"));
+				
+				
+				usuario.setUser_ID(rs.getLong("user_ID"));
+				usuario.setContrasenia(rs.getString("contrasenia"));
 				usuario.setNombre(rs.getString("nombre"));
 				usuario.setApellido(rs.getString("apellido"));
-				usuario.setContrasenia(rs.getString("contrasenia"));
-				usuario.setFechaNac(rs.getString("contrasenia"));
-				usuario.setTelefono(rs.getLong("telefono"));
+				usuario.setTelefono(rs.getString("telefono"));
+				usuario.setPerfil(rs.getBoolean(perfil));
+
 
 			}
 			return usuario;

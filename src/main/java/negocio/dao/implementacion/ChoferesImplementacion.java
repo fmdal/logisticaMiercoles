@@ -25,7 +25,7 @@ public class ChoferesImplementacion implements iDAO<Choferes> {
 
 			PreparedStatement ps = con.prepareStatement(sql);
 
-			ps.setInt(1, elemento.getUserID());
+			ps.setInt(1, elemento.getUser_ID());
 			ps.setString(2, elemento.getNombre());
 			ps.setString(3, elemento.getApellido());
 			ps.setString(4, elemento.getContrasenia());

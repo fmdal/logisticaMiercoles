@@ -81,18 +81,14 @@ public class ViajesImplementacion implements iDAO<Viajes> {
 
 					Viajes viaje = new Viajes();
 					
-					protected int viajes_ID;
-					protected Choferes chofer;
-					protected Camiones camion;
-					protected float consumo_nafta;
-					protected String origen;
-					protected String destino;
-					protected double distancia;
-
-					viaje.setViajes_ID(rs.getint("viajes_ID"));
-					viaje.setChofer((Choferes) rs).getChofer("chofer");
-					viaje.setCamion(rs.getString("camion"));
-					viaje.setConsumo_nafta(rs.getDate("consumo_nafta"));
+					viaje.setViajes_ID(rs.getInt("viajes_ID"));
+//					viaje.setChofer((Choferes) rs).getChofer("chofer");
+//					viaje.setCamion((Camiones) rs).getCamion("camion"); //no se bien como es esto
+					viaje.setConsumo_nafta(rs.getInt("consumo_nafta"));
+					viaje.setOrigen(rs.getString("origen"));
+					viaje.setDestino(rs.getString("destino"));
+					viaje.setDistancia(rs.getDouble("distancia"));
+					
 					lista_viajes.add(viaje);
 				}
 				prep.close();
@@ -101,7 +97,7 @@ public class ViajesImplementacion implements iDAO<Viajes> {
 				e.printStackTrace();
 			}
 
-			return listaViajes;
+			return lista_viajes;
 		}
 
 //// <<<<<<< HEAD
@@ -132,13 +128,15 @@ public class ViajesImplementacion implements iDAO<Viajes> {
 			Viajes viaje = new Viajes();
 
 			if (rs.next()) {
-				viaje.setViajesID(rs.getInt("viajesID"));
-				viaje.setChofer(((Viajes) rs).getChofer());
-				viaje.setCamion(((Viajes) rs).getCamion());
-				viaje.setConsumoNafta(rs.getFloat("consumoNafta"));
-				viaje.setTrayectos(((Viajes) rs).getTrayectos());
-				viaje.add(viaje);
+				viaje.setViajes_ID(rs.getInt("viajes_ID"));
+//				viaje.setChofer((Choferes) rs).getChofer("chofer");
+//				viaje.setCamion((Camiones) rs).getCamion("camion"); //no se bien como es esto
+				viaje.setConsumo_nafta(rs.getInt("consumo_nafta"));
+				viaje.setOrigen(rs.getString("origen"));
+				viaje.setDestino(rs.getString("destino"));
+				viaje.setDistancia(rs.getDouble("distancia"));
 
+				viaje.add(viaje);
 			}
 			return viaje;
 		} catch (Exception e) {

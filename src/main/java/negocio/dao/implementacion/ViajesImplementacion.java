@@ -8,14 +8,13 @@ import java.util.ArrayList;
 
 import core.Conexion;
 import negocio.dao.iDAO;
-import negocio.dominio.Camiones;
 import negocio.dominio.Choferes;
 import negocio.dominio.Viajes;
 
 public class ViajesImplementacion implements iDAO<Viajes> {
 
-		@Override
-		public boolean add(Viajes elemento) {
+	@Override
+	public boolean add(Viajes elemento) {
 
 			String sql = "INSERT INTO viajes(viajesID, chofer, camion, consumoNafta, trayecto) VALUES (?,?,?,?,?)";
 
@@ -24,12 +23,12 @@ public class ViajesImplementacion implements iDAO<Viajes> {
 
 				PreparedStatement ps = con.prepareStatement(sql);
 
-				ps.setString(1, elemento.getViajes_ID());
-				ps.setString(2, elemento.getChofer());
-				ps.setString(3, elemento.getCamion());
-				ps.setString(4, elemento.getConsumo_nafta());
-				
-				ps.execute();
+			ps.setString(1, elemento.getViajes_ID());
+			ps.setString(2, elemento.getChofer());
+			ps.setString(3, elemento.getCamion());
+			ps.setString(4, elemento.getConsumo_nafta());
+
+			ps.execute();
 
 				ps.close();
 
@@ -96,8 +95,19 @@ public class ViajesImplementacion implements iDAO<Viajes> {
 			return listaViajes;
 		}
 
+<<<<<<< HEAD
 		@Override
 		public Viajes findId(long l) {
+=======
+		return listaViajes;
+	}
+
+	@Override
+	public Viajes findId(long l) {
+
+		Connection con = null;
+		PreparedStatement prep = null;
+>>>>>>> master
 
 			Connection con = null;
 			PreparedStatement prep = null;

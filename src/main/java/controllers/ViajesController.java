@@ -1,18 +1,19 @@
 package controllers;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
-
-import negocio.dao.iDAO;
-import negocio.dao.factory.AdminsFactory;
-import negocio.dominio.Admins;
+import negocio.dao.iViajesDAO;
+import negocio.dao.factory.ViajesFactory;
+import negocio.dominio.Users;
 import negocio.dominio.Viajes;
 
 /**
@@ -33,6 +34,7 @@ public class ViajesController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -43,6 +45,7 @@ public class ViajesController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -50,50 +53,62 @@ public class ViajesController extends HttpServlet {
 
 		if (request.getParameter("accion") != null) {
 
-			iDAO<Admins> adminsDAO = AdminsFactory.getImplementation("DB");
+			iViajesDAO<Viajes> usersDAO = ViajesFactory.getImplementation("DB");
 
 			if (request.getParameter("accion").equals("alta")) {
 				Viajes viaje = new Viajes();
 
-				viaje.setCamion(camion);
-				viaje.setChofer(chofer);
-				viaje.setConsumo_nafta(consumo_nafta);
-				viaje.setDestino(destino);
-				viaje.setDistancia(distancia);
-				viaje.setOrigen(origen);
-				viaje.setViajesID(viajes_ID);
+				user.setUserID(request.getParameter("userID"));
+				user.setTelefono(Long.parseLong(request.getParameter("telefono")));
+				user.setContrasenia(request.getParameter("contrasenia"));
+				user.setNombre(request.getParameter("nombre"));
+				user.setApellido(request.getParameter("apellido"));
+				user.setFechaNac(request.getParameter("fecha_nac"));
+//				user.setTelefono(Long.parseLong(request.getParameter("listaViajes")));
 
-				setUserID(request.getParameter("userID"));
-
-				viaje.setTelefono(Long.parseLong(request.getParameter("telefono")));
-				viaje.setContrasenia(request.getParameter("contrasenia"));
-				viaje.setNombre(request.getParameter("nombre"));
-				viaje.setApellido(request.getParameter("apellido"));
-				viaje.setFechaNac(request.getParameter("fecha_nac"));
-//				viajes.setTelefono(Long.parseLong(request.getParameter("listaViajes")));
-
-				adminsDAO.add(viaje);
+				usersDAO.add(user);
 
 			} else if (request.getParameter("accion").equals("baja")) {
 
-				adminsDAO.deleteById(request.getParameter("userID"));
+				usersDAO.deleteById(request.getParameter("userID"));
 
 			} else if (request.getParameter("accion").equals("modif")) {
-				Admins admin = new Admins();
+				Users user = new Users();
 
-				viaje.setUserID(request.getParameter("userID"));
-				viaje.setTelefono(Long.parseLong(request.getParameter("telefono")));
-				viaje.setContrasenia(request.getParameter("contrasenia"));
-				viaje.setNombre(request.getParameter("nombre"));
-				viaje.setApellido(request.getParameter("apellido"));
-				viaje.setFechaNac(request.getParameter("fecha_nac"));
-//				viajes.setTelefono(Long.parseLong(request.getParameter("listaViajes")));
+				user.setUserID(request.getParameter("userID"));
+				user.setTelefono(Long.parseLong(request.getParameter("telefono")));
+				user.setContrasenia(request.getParameter("contrasenia"));
+				user.setNombre(request.getParameter("nombre"));
+				user.setApellido(request.getParameter("apellido"));
+				user.setFechaNac(request.getParameter("fecha_nac"));
+//				user.setTelefono(Long.parseLong(request.getParameter("listaViajes")));
 
-				adminsDAO.save(admin);
+				usersDAO.save(user);
 
 			} else if (request.getParameter("accion").equals("busca")) {
 
-				Admins cli = (Admins) adminsDAO.findId(Long.parseLong(request.getParameter("userID")));
+				Users usr = (Users) usersDAO.findId(Long.parseLong(request.getParameter("userID")));
+
+			} else if (request.getParameter("accion").equals("login")) {
+
+				Users usr = (Users) usersDAO.findId(Long.parseLong(request.getParameter("userID")));
+
+				if (usr.getContrasenia() != null && usr.getContrasenia().equals(request.getParameter("contrasenia"))) {
+
+					Cookie cookieUs = new Cookie("userID", URLEncoder.encode(request.getParameter("userID"), "UTF-8"));
+					Cookie cookieClave = new Cookie("contrasenia",
+							URLEncoder.encode(request.getParameter("contrasenia"), "UTF-8"));
+					cookieUs.setMaxAge(365 * 24 * 60 * 60);
+					cookieClave.setMaxAge(365 * 24 * 60 * 60);
+					response.addCookie(cookieUs);
+					response.addCookie(cookieClave);
+
+					HttpSession misession = request.getSession(true);
+					misession.setAttribute("userID", request.getParameter("userID"));
+
+					destino = "perfilAdmin.jsp";
+
+				}
 
 			} else {
 				request.getSession().setAttribute("Error", "Tipo de accion incorrecta");

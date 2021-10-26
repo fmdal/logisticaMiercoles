@@ -2,7 +2,7 @@ package negocio.dao;
 
 import java.util.ArrayList;
 
-public interface CamionesiDAO<T> {
+public interface iChoferesDAO<T> {
 
 	public boolean add(T elemento);
 

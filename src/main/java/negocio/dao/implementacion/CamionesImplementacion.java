@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import core.Conexion;
 import negocio.dao.iDAO;
 import negocio.dominio.Camiones;
-import negocio.dominio.Users;
 
 public class CamionesImplementacion implements iDAO<Camiones> {
 
@@ -22,8 +21,8 @@ public class CamionesImplementacion implements iDAO<Camiones> {
 			Connection con = Conexion.getConnection(); // resolver conexion
 
 			PreparedStatement ps = con.prepareStatement(sql);
-			
-			ps.setInt (1, elemento.getCamion_ID());
+
+			ps.setInt(1, elemento.getCamion_ID());
 			ps.setString(2, elemento.getPatente());
 			ps.setString(3, elemento.getMarca());
 			ps.setString(4, elemento.getModelo());
@@ -62,16 +61,7 @@ public class CamionesImplementacion implements iDAO<Camiones> {
 			while (rs.next()) {
 
 				Camiones camion = new Camiones();
-				
-				protected int camion_ID;
-				protected String patente;
-				protected String marca;
-				protected String modelo;
-				protected int tanque_nafta;
-				protected int peso_max;
-				protected double litrosxkm;
-				protected boolean disponible;
-				
+
 				camion.setCamionID(rs.getInt(camion_ID));
 				camion.setPatente(rs.getString("patente"));
 				camion.setMarca(rs.getString("marca"));
@@ -92,7 +82,7 @@ public class CamionesImplementacion implements iDAO<Camiones> {
 	}
 
 	@Override
-	public Camion findId(long l) {
+	public Camiones findId(long l) {
 
 		Connection con = null;
 		PreparedStatement prep = null;
@@ -110,7 +100,7 @@ public class CamionesImplementacion implements iDAO<Camiones> {
 			Camiones camion = new Camiones();
 
 			if (rs.next()) {
-				
+
 				int camion_ID;
 				String patente;
 				String marca;
@@ -118,8 +108,8 @@ public class CamionesImplementacion implements iDAO<Camiones> {
 				int tanque_nafta;
 				int peso_max;
 				double litrosxkm;
-				boolean disponible;  //no se si va esto aca
-				
+				boolean disponible; // no se si va esto aca
+
 				camion.setCamionID(rs.getInt(camion_ID));
 				camion.setPatente(rs.getString("patente"));
 				camion.setMarca(rs.getString("marca"));
@@ -161,12 +151,6 @@ public class CamionesImplementacion implements iDAO<Camiones> {
 		}
 
 		return false;
-	}
-
-	@Override
-	public Camiones findId(long l) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

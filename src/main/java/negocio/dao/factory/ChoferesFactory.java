@@ -1,15 +1,17 @@
 package negocio.dao.factory;
 
-//import negocio.dao
+import negocio.dao.iChoferesDAO;
+import negocio.dao.implementacion.ChoferesImplementacion;
 import negocio.dominio.Choferes;
 
 public class ChoferesFactory {
 
-//	public static iDAO<Choferes> getImplementation(String source) {
-//		if (source.equals("DB")) {
-//			return (iDAO<Choferes>) new ChoferesImplementacion();
-//		}
-//
-//		return null;
-//	}
+	@SuppressWarnings("unchecked")
+	public static iChoferesDAO<Choferes> getImplementation(String source) {
+		if (source.equals("DB")) {
+			return (iChoferesDAO<Choferes>) new ChoferesImplementacion();
+		}
+
+		return null;
+	}
 }

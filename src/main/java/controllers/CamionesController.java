@@ -8,12 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
-
-import negocio.dao.iDAO;
-import negocio.dao.factory.AdminsFactory;
+import negocio.dao.iCamionesDAO;
 import negocio.dao.factory.CamionesFactory;
-import negocio.dominio.Admins;
 import negocio.dominio.Camiones;
 
 /**
@@ -34,6 +30,7 @@ public class CamionesController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -44,6 +41,7 @@ public class CamionesController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -51,7 +49,7 @@ public class CamionesController extends HttpServlet {
 
 		if (request.getParameter("accion") != null) {
 
-			iDAO<Camiones> camionesDAO = CamionesFactory.getImplementation("DB");
+			iCamionesDAO<Camiones> camionesDAO = CamionesFactory.getImplementation("DB");
 
 			if (request.getParameter("accion").equals("alta")) {
 				Camiones camion = new Camiones();

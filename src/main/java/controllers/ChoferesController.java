@@ -8,11 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
-
-import negocio.dao.iDAO;
-import negocio.dao.factory.AdminsFactory;
-import negocio.dominio.Admins;
+import negocio.dao.iChoferesDAO;
+import negocio.dao.factory.ChoferesFactory;
 import negocio.dominio.Choferes;
 
 /**
@@ -33,6 +30,7 @@ public class ChoferesController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -43,6 +41,7 @@ public class ChoferesController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -50,7 +49,7 @@ public class ChoferesController extends HttpServlet {
 
 		if (request.getParameter("accion") != null) {
 
-			iDAO<Choferes> choferesDAO = ChoferesFactory.getImplementation("DB");
+			iChoferesDAO<Choferes> choferesDAO = ChoferesFactory.getImplementation("DB");
 
 			if (request.getParameter("accion").equals("alta")) {
 				Choferes chofer = new Choferes();

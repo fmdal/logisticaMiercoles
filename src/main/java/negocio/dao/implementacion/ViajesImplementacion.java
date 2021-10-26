@@ -45,25 +45,6 @@ public class ViajesImplementacion implements iDAO<Viajes> {
 
 
 		@Override
-		public Object get(Object elemento) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-
-		@Override
-		public boolean save() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-
-		@Override
-		public boolean delete() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-
-		@Override
 		public ArrayList<Viajes> getLista() {
 
 			ArrayList<Viajes> lista_viajes = new ArrayList<>();
@@ -121,6 +102,7 @@ public class ViajesImplementacion implements iDAO<Viajes> {
 			con = Conexion.getConnection();
 			prep = con.prepareStatement(sql);
 
+			int id=0; //aca no se si rinde inicializar
 			prep.setInt(1, (int) id);
 
 			ResultSet rs = prep.executeQuery();
@@ -136,7 +118,7 @@ public class ViajesImplementacion implements iDAO<Viajes> {
 				viaje.setDestino(rs.getString("destino"));
 				viaje.setDistancia(rs.getDouble("distancia"));
 
-				viaje.add(viaje);
+				viaje.add(viaje); //cree el metodo, en dominio Viajes, pero esta vacia
 			}
 			return viaje;
 		} catch (Exception e) {
@@ -167,6 +149,13 @@ public class ViajesImplementacion implements iDAO<Viajes> {
 				e.printStackTrace();
 			}
 
+			return false;
+		}
+
+
+		@Override
+		public boolean save(Viajes elemento) {
+			// TODO Auto-generated method stub
 			return false;
 		}
 

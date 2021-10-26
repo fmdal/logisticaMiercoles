@@ -79,4 +79,9 @@ public class Viajes {
 		this.distancia = distancia;
 	}
 
+	public void add(Viajes viaje) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

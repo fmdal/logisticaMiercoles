@@ -3,7 +3,7 @@ package negocio.dominio;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public abstract class Users {
+public class Users {
 
 	protected int user_ID;
 	protected String contrasenia;

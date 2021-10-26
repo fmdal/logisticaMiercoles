@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
+//import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
 
 import core.Conexion;
 import negocio.dao.iDAO;
@@ -44,24 +44,6 @@ public class UsersImplementacion implements iDAO<Users> {
 			e.printStackTrace();
 		}
 
-		return false;
-	}
-
-	@Override
-	public Object get(Object elemento) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean save() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean delete() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -113,6 +95,7 @@ public class UsersImplementacion implements iDAO<Users> {
 			con = Conexion.getConnection();
 			prep = con.prepareStatement(sql);
 
+			int id=0; //lo inicialice aca pero creo que esta mal, para revisar
 			prep.setInt(1, (int) id);
 
 			ResultSet rs = prep.executeQuery();
@@ -121,13 +104,14 @@ public class UsersImplementacion implements iDAO<Users> {
 
 			if (rs.next()) {
 				
-				
 				usuario.setUser_ID(rs.getInt("user_ID"));
 				usuario.setContrasenia(rs.getString("contrasenia"));
 				usuario.setNombre(rs.getString("nombre"));
 				usuario.setApellido(rs.getString("apellido"));
 //				usuario.setFecha_nac(rs.getDate("fecha_nac"));
 				usuario.setTelefono(rs.getString("telefono"));
+				usuario.setPerfil(false);
+				
 
 
 			}
@@ -159,7 +143,6 @@ public class UsersImplementacion implements iDAO<Users> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return false;
 	}
 
@@ -168,5 +151,4 @@ public class UsersImplementacion implements iDAO<Users> {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 }

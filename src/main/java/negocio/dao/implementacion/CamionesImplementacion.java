@@ -63,14 +63,14 @@ public class CamionesImplementacion implements iDAO<Camiones> {
 
 				Camiones camion = new Camiones();
 				
-				int camion_ID;
-				String patente;
-				String marca;
-				String modelo;
-				int tanque_nafta;
-				int peso_max;
-				double litrosxkm;
-				boolean disponible;  //no se si va esto aca
+				protected int camion_ID;
+				protected String patente;
+				protected String marca;
+				protected String modelo;
+				protected int tanque_nafta;
+				protected int peso_max;
+				protected double litrosxkm;
+				protected boolean disponible;
 				
 				camion.setCamionID(rs.getInt(camion_ID));
 				camion.setPatente(rs.getString("patente"));
@@ -78,7 +78,7 @@ public class CamionesImplementacion implements iDAO<Camiones> {
 				camion.setModelo(rs.getString("modelo"));
 				camion.setTanque_nafta(rs.getInt(tanque_nafta));
 				camion.setPeso_max(rs.getInt(peso_max));
-				camion.setListrosxKm(rs.getDouble(litrosxkm));
+//				camion.setListrosxKm(rs.getDouble(litrosxkm)); //no se que pasa con el getDouble que no anda
 //				ps.setDisponible(8, elemento.isDisponible());  //no se que paso aca, no me toma el boolean
 				camiones.add(camion);
 			}

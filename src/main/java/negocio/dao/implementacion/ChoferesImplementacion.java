@@ -61,18 +61,18 @@ public class ChoferesImplementacion implements iDAO<Choferes> {
 
 			while (rs.next()) {
 
-				Choferes chofer = new Choferes();
+				Choferes chofer1 = new Choferes();
 				
-				chofer.setUser_ID(rs.getInt("user_ID"));
-				chofer.setContrasenia(rs.getString("contrasenia"));
-				chofer.setNombre(rs.getString("nombre"));
-				chofer.setApellido(rs.getString("apellido"));
+				chofer1.setUser_ID(rs.getInt("user_ID"));
+				chofer1.setContrasenia(rs.getString("contrasenia"));
+				chofer1.setNombre(rs.getString("nombre"));
+				chofer1.setApellido(rs.getString("apellido"));
 //				chofer.setFecha_nac(rs.getDate("fecha_nac"));
-				chofer.setTelefono(rs.getString("telefono"));
-				chofer.setCategoria(rs.getString("categoria"));
+				chofer1.setTelefono(rs.getString("telefono"));
+				chofer1.setCategoria(rs.getString("categoria"));
 //				chofer.setLista_camiones(rs.getLong("lista_camiones")); aca deberia ir con array
 
-				Choferes.add(chofer);
+//				Choferes.add(chofer); no se que pasa con el objeto
 			}
 			prep.close();
 
@@ -95,6 +95,7 @@ public class ChoferesImplementacion implements iDAO<Choferes> {
 			con = Conexion.getConnection();
 			prep = con.prepareStatement(sql);
 
+			int id = 0; //inicialice aca
 			prep.setInt(1, (int) id);
 
 			ResultSet rs = prep.executeQuery();

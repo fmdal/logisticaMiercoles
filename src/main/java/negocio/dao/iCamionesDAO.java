@@ -2,15 +2,15 @@ package negocio.dao;
 
 import java.util.ArrayList;
 
-public interface iCamionesDAO<T> {
+public interface iCamionesDAO<Camiones> extends iDAO<Camiones> {
 
-	public boolean add(T elemento);
+	@Override
+	public ArrayList<Camiones> getLista();
 
-	public ArrayList<T> getLista();
+	@Override
+	public Camiones findId(long l);
 
-	public T findId(long l);
-
+	@Override
 	public boolean deleteById(long l);
 
-	public boolean save(T elemento);
 }

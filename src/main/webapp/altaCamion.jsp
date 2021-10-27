@@ -1,6 +1,6 @@
-<jsp:include page="header.jsp"></jsp:include>
+<%-- <jsp:include page="header.jsp"></jsp:include> --%>
 <jsp:include page="navbar.jsp"></jsp:include>
-
+//
 <div class="container" style="padding: 20px">
 	<form method="post" action="CamionesController">
 

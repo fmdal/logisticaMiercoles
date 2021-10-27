@@ -45,41 +45,50 @@ public class CamionesController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String destino;
-
+		String destino = null;
+		
 		if (request.getParameter("accion") != null) {
-
+			
 			iCamionesDAO<Camiones> camionesDAO = CamionesFactory.getImplementation("DB");
 
 			if (request.getParameter("accion").equals("alta")) {
 				Camiones camion = new Camiones();
-
+						
+				camion.setCamionID(Integer.parseInt(request.getParameter("patente")));
 				camion.setPatente(request.getParameter("patente"));
-				camion.setContrasenia(request.getParameter("contrasenia"));
-				camion.setTanque_nafta(Double.parseDouble(request.getParameter("telefono")));
-				camion.setPeso_max(Double.parseDouble(request.getParameter("pesoMax")));
+				camion.setMarca(request.getParameter("marca"));
+				camion.setModelo(request.getParameter("modelo"));
+				camion.setTanque_nafta(Integer.parseInt(request.getParameter("tanque_nafta")));
+				camion.setPeso_max(Integer.parseInt(request.getParameter("peso_max")));
+				camion.setTanque_nafta(Integer.parseInt(request.getParameter("telefono")));
+				camion.setPeso_max(Integer.parseInt(request.getParameter("pesoMax")));
 				camion.setLitrosxKm(Double.parseDouble(request.getParameter("listrosxKm")));
+				
 
 				camionesDAO.add(camion);
 
 			} else if (request.getParameter("accion").equals("baja")) {
 
-				camionesDAO.deleteById(request.getParameter("userID"));
+				camionesDAO.deleteById(Integer.parseInt(request.getParameter("userID")));
 
 			} else if (request.getParameter("accion").equals("modif")) {
 				Camiones camion = new Camiones();
 
+				camion.setCamionID(Integer.parseInt(request.getParameter("patente")));
 				camion.setPatente(request.getParameter("patente"));
-				camion.setContrasenia(request.getParameter("contrasenia"));
-				camion.setTanqueNafta(Double.parseDouble(request.getParameter("telefono")));
-				camion.setPesoMax(Double.parseDouble(request.getParameter("pesoMax")));
+				camion.setMarca(request.getParameter("marca"));
+				camion.setModelo(request.getParameter("modelo"));
+				camion.setTanque_nafta(Integer.parseInt(request.getParameter("tanque_nafta")));
+				camion.setPeso_max(Integer.parseInt(request.getParameter("peso_max")));
+				camion.setTanque_nafta(Integer.parseInt(request.getParameter("telefono")));
+				camion.setPeso_max(Integer.parseInt(request.getParameter("pesoMax")));
 				camion.setLitrosxKm(Double.parseDouble(request.getParameter("listrosxKm")));
-
+			
 				camionesDAO.save(camion);
 
 			} else if (request.getParameter("accion").equals("busca")) {
 
-				Camiones cli = (Camiones) camionDAO.findId(Long.parseLong(request.getParameter("userID")));
+				Camiones cli = (Camiones) camionesDAO.findId(Long.parseLong(request.getParameter("userID")));
 
 			} else {
 				request.getSession().setAttribute("Error", "Tipo de accion incorrecta");
@@ -95,3 +104,4 @@ public class CamionesController extends HttpServlet {
 	}
 
 }
+

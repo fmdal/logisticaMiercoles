@@ -1,4 +1,5 @@
-<%@page import="java.util.*"%>
+
+<%@page import="java.util.*"%> 
 <%@page import="negocio.dao.iDAO"%>
 <%@page import="negocio.dao.factory.ViajesFactory"%>
 <%@page import="negocio.dominio.Viajes"%>

@@ -1,13 +1,9 @@
-
-<%@page import="controllers.ViajesController"%>
 <%@page import="java.util.*"%> 
 <%@page import="negocio.dao.iDAO"%>
 <%@page import="negocio.dao.factory.ViajesFactory"%>
 <%@page import="negocio.dominio.Viajes"%>
+<%@page import="controllers.ViajesController"%>
 
-<%-- <% --%>
-
-<%-- %> --%>
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navbar.jsp"></jsp:include>
 

@@ -13,7 +13,7 @@ public class Viajes {
 	public Viajes() {
 	}
 
-	public Viajes(int viajesID, Choferes chofer, Camiones camion, float consumo_nafta, String origen, String destino,
+	public Viajes(int viajes_ID, Choferes chofer, Camiones camion, float consumo_nafta, String origen, String destino,
 			double distancia) {
 		this.viajes_ID = viajes_ID;
 		this.chofer = chofer;

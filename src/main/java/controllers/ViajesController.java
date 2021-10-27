@@ -78,14 +78,25 @@ public class ViajesController extends HttpServlet {
 				}
 
 				Viajes viaje = new Viajes();
+				
+				protected int viajes_ID;
+				protected Choferes chofer;
+				protected Camiones camion;
+				protected float consumo_nafta;
+				protected String origen;
+				protected String destino;
+				protected double distancia;
 
-				viaje.setUserID(request.getParameter("userID"));
-				viaje.setTelefono(Long.parseLong(request.getParameter("telefono")));
-				viaje.setContrasenia(request.getParameter("contrasenia"));
-				viaje.setNombre(request.getParameter("nombre"));
-				viaje.setApellido(request.getParameter("apellido"));
-				user.setFechaNac(request.getParameter("fecha_nac"));
-//				user.setTelefono(Long.parseLong(request.getParameter("listaViajes")));
+				viaje.setViajes_ID(request.getParameter("viajes_ID"));
+				viaje.setChofer(request.getParameter("viajes_ID"));
+				viaje.setCamion(camion);
+				viaje.setConsumo_nafta(Float.parseFloat(request.getParameter("consumo_nafta")));
+				viaje.setOrigen(request.getParameter("origen"));
+				viaje.setDestino(request.getParameter("destino"));
+				viaje.setDistancia(Double.parseDouble(request.getParameter("distancia")));
+				
+
+//				lista viajes?
 
 				usersDAO.add(user);
 

@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -57,19 +58,19 @@ public class UsersController extends HttpServlet {
 			if (request.getParameter("accion").equals("alta")) {
 				Users user = new Users();
 
-				user.setUserID(request.getParameter("userID"));
-				user.setTelefono(Long.parseLong(request.getParameter("telefono")));
+				user.setUser_ID(Long.parseLong(request.getParameter("userID")));
 				user.setContrasenia(request.getParameter("contrasenia"));
 				user.setNombre(request.getParameter("nombre"));
 				user.setApellido(request.getParameter("apellido"));
-				user.setFechaNac(request.getParameter("fecha_nac"));
-//				user.setTelefono(Long.parseLong(request.getParameter("listaViajes")));
-
+//				user.setFecha_nac(request.getParameter("fecha_nac"));
+				user.setTelefono(request.getParameter("telefono"));
+				user.setPerfil(Boolean.parseBoolean(request.getParameter("perfil")));
+				
 				usersDAO.add(user);
 
 			} else if (request.getParameter("accion").equals("baja")) {
 
-				usersDAO.deleteById(request.getParameter("userID"));
+				usersDAO.deleteById(request.getParameter("user_ID"));
 
 			} else if (request.getParameter("accion").equals("modif")) {
 				Users user = new Users();

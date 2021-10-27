@@ -1,18 +1,18 @@
-<%@page import="java.util.*"%>
+
+<%@page import="controllers.ViajesController"%>
+<%@page import="java.util.*"%> 
 <%@page import="negocio.dao.iDAO"%>
 <%@page import="negocio.dao.factory.ViajesFactory"%>
 <%@page import="negocio.dominio.Viajes"%>
 
 <%-- <% --%>
-// iDAO<Viajes> viajesDAO = ViajesFactory.getImplementation("DB");
 
-// ArrayList<Viajes> viajes = viajesDAO.getLista();
 <%-- %> --%>
 <jsp:include page="header.jsp"></jsp:include>
 <jsp:include page="navbar.jsp"></jsp:include>
 
 <div class="container" style="padding: 20px">
-	<form method="post" action="">
+<!-- 	<form method="post" action="">
 		<div style="text-align: left;">
 			<label>Patente</label> <input type="text" id="patente" name="patente" required="required" />
 		</div>
@@ -22,16 +22,20 @@
 			<p style="text-align: center;">
 				<button type="submit" class="btn btn-light">Finalizar</button>
 			</p>
-		</div>
-		<%-- 
+		</div> -->
+		
 <form method="GET" action="ViajesController">
-	<td id="viajesID" name="viajesID">ID</td>
-		<% for (int i=0;i<ViajesController.get().get().size(); i++ ){ %>
-	<td><%= sl.get().get().get(i).getIdViaje()  %></td>
-	<td><%= sl.get().get().get(i).getDestino()  %></td>
+	<td>ID</td>
+	<%if (ViajesController.getViajesList().size()>0) { %>
+		<% for (int i=0;i<ViajesController.getViajesList().size(); i++ ){ %>
+	<td> <%= ViajesController.getViajesList().get(i).getViajes_ID()  %></td>
+	<td> <%= ViajesController.getViajesList().get(i).getDestino()  %></td>
+<%} %>
+<%} else {%>
+<label>No Hay Viajes</label>
 <%} %>
 </form>
---%>
+
 		<table>
 		<tr><td>Id del viaje</td><td>Patente</td><td>Trayecto</td><td>Finalizar</td></tr>
 <%-- 			<% --%>

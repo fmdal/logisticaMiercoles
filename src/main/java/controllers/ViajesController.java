@@ -86,17 +86,9 @@ public class ViajesController extends HttpServlet {
 
 				Viajes viaje = new Viajes();
 				
-				protected int viajes_ID;
-				protected Choferes chofer;
-				protected Camiones camion;
-				protected float consumo_nafta;
-				protected String origen;
-				protected String destino;
-				protected double distancia;
-
 				viaje.setViajes_ID(request.getParameter("viajes_ID"));
 				viaje.setChofer(request.getParameter("viajes_ID"));
-				viaje.setCamion(camion);
+				viaje.setCamion(request.getParameter("camiones"));
 				viaje.setConsumo_nafta(Float.parseFloat(request.getParameter("consumo_nafta")));
 				viaje.setOrigen(request.getParameter("origen"));
 				viaje.setDestino(request.getParameter("destino"));
@@ -105,47 +97,40 @@ public class ViajesController extends HttpServlet {
 
 //				lista viajes?
 
-				usersDAO.add(user);
+				viajesDAO.add(viaje);
 
 			} else if (request.getParameter("accion").equals("baja")) {
 
-				usersDAO.deleteById(request.getParameter("userID"));
+				viajesDAO.deleteById(request.getParameter("viajes_ID"));
 
 			} else if (request.getParameter("accion").equals("modif")) {
-				Users user = new Users();
+				
+				
+			Viajes viajes = new Viajes();
 
-				user.setUserID(request.getParameter("userID"));
-				user.setTelefono(Long.parseLong(request.getParameter("telefono")));
-				user.setContrasenia(request.getParameter("contrasenia"));
-				user.setNombre(request.getParameter("nombre"));
-				user.setApellido(request.getParameter("apellido"));
-				user.setFechaNac(request.getParameter("fecha_nac"));
-//				user.setTelefono(Long.parseLong(request.getParameter("listaViajes")));
+			viaje.setViajes_ID(request.getParameter("viajes_ID"));
+			viaje.setChofer(request.getParameter("viajes_ID"));
+			viaje.setCamion(request.getParameter("camiones"));
+			viaje.setConsumo_nafta(Float.parseFloat(request.getParameter("consumo_nafta")));
+			viaje.setOrigen(request.getParameter("origen"));
+			viaje.setDestino(request.getParameter("destino"));
+			viaje.setDistancia(Double.parseDouble(request.getParameter("distancia")));
 
-				usersDAO.save(user);
+				viajesDAO.save(viajes);
 
 			} else if (request.getParameter("accion").equals("busca")) {
 
-				Users usr = (Users) usersDAO.findId(Long.parseLong(request.getParameter("userID")));
+				Viajes viaje = (Viajes) viajesDAO.findId(Integer.parseInt(request.getParameter("viajes_ID")));
 
 			} else if (request.getParameter("accion").equals("login")) {
 
-				Users usr = (Users) usersDAO.findId(Long.parseLong(request.getParameter("userID")));
+				Viajes viaje = (Viajes) viajesDAO.findId(Integer.parseInt(request.getParameter("viajes_ID")));
 
-				if (usr.getContrasenia() != null && usr.getContrasenia().equals(request.getParameter("contrasenia"))) {
-
-					Cookie cookieUs = new Cookie("userID", URLEncoder.encode(request.getParameter("userID"), "UTF-8"));
-					Cookie cookieClave = new Cookie("contrasenia",
-							URLEncoder.encode(request.getParameter("contrasenia"), "UTF-8"));
-					cookieUs.setMaxAge(365 * 24 * 60 * 60);
-					cookieClave.setMaxAge(365 * 24 * 60 * 60);
-					response.addCookie(cookieUs);
-					response.addCookie(cookieClave);
-
-					HttpSession misession = request.getSession(true);
-					misession.setAttribute("userID", request.getParameter("userID"));
-
-					destino = "perfilAdmin.jsp";
+				if (request.getParameter("accion").equals("viajes_ID")) {
+						
+					viaje.setViajes_ID(Integer.parseInt(request.getParameter("viajes_ID")));
+						
+					// mostrar viaje (sacado del controller de user)
 
 				}
 

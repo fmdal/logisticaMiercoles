@@ -16,13 +16,13 @@ import negocio.dominio.Choferes;
  * Servlet implementation class Controller
  */
 @WebServlet("/ChoferesController")
-public class ChoferesController extends HttpServlet {
+public class ViajesController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Default constructor.
 	 */
-	public ChoferesController() {
+	public ViajesController() {
 		// TODO Auto-generated constructor stub
 	}
 

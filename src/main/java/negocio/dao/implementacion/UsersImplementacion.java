@@ -84,7 +84,7 @@ public class UsersImplementacion implements iDAO<Users> {
 	}
 
 	@Override
-	public Users findId(long l) {
+	public Users findId(long id) {
 
 		Connection con = null;
 		PreparedStatement prep = null;
@@ -95,7 +95,6 @@ public class UsersImplementacion implements iDAO<Users> {
 			con = Conexion.getConnection();
 			prep = con.prepareStatement(sql);
 
-			int id=0; //lo inicialice aca pero creo que esta mal, para revisar
 			prep.setInt(1, (int) id);
 
 			ResultSet rs = prep.executeQuery();

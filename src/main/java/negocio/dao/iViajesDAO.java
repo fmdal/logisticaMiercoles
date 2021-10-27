@@ -13,4 +13,5 @@ public interface iViajesDAO<T> {
 	public boolean deleteById(long l);
 
 	public boolean save(T elemento);
+	//public arrayinterger cvamiones
 }

@@ -11,8 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import negocio.dao.iCamionesDAO;
+import negocio.dao.iChoferesDAO;
 import negocio.dao.iViajesDAO;
+import negocio.dao.factory.CamionesFactory;
+import negocio.dao.factory.ChoferesFactory;
 import negocio.dao.factory.ViajesFactory;
+import negocio.dominio.Camiones;
+import negocio.dominio.Choferes;
 import negocio.dominio.Users;
 import negocio.dominio.Viajes;
 
@@ -53,16 +59,18 @@ public class ViajesController extends HttpServlet {
 
 		if (request.getParameter("accion") != null) {
 
-			iViajesDAO<Viajes> usersDAO = ViajesFactory.getImplementation("DB");
+			iViajesDAO<Viajes> viajesDAO = ViajesFactory.getImplementation("DB");
+			iChoferesDAO<Choferes> choferesDAO = ChoferesFactory.getImplementation("DB");
+			iCamionesDAO<Camiones> camionesDAO = CamionesFactory.getImplementation("DB");
 
 			if (request.getParameter("accion").equals("alta")) {
 				Viajes viaje = new Viajes();
 
-				user.setUserID(request.getParameter("userID"));
-				user.setTelefono(Long.parseLong(request.getParameter("telefono")));
-				user.setContrasenia(request.getParameter("contrasenia"));
-				user.setNombre(request.getParameter("nombre"));
-				user.setApellido(request.getParameter("apellido"));
+				viaje.setUserID(request.getParameter("userID"));
+				viaje.setTelefono(Long.parseLong(request.getParameter("telefono")));
+				viaje.setContrasenia(request.getParameter("contrasenia"));
+				viaje.setNombre(request.getParameter("nombre"));
+				viaje.setApellido(request.getParameter("apellido"));
 				user.setFechaNac(request.getParameter("fecha_nac"));
 //				user.setTelefono(Long.parseLong(request.getParameter("listaViajes")));
 

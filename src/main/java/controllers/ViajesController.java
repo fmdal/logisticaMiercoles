@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -64,6 +65,18 @@ public class ViajesController extends HttpServlet {
 			iCamionesDAO<Camiones> camionesDAO = CamionesFactory.getImplementation("DB");
 
 			if (request.getParameter("accion").equals("alta")) {
+
+				Viajes viaje = viajesDAO.findId(Long.parseLong(request.getParameter("viajeID")));
+				viaje.setCamion(
+						camionesDAO.findId(viajesDAO.getCamionId(Integer.parseInt(request.getParameter("viajeID")))));
+
+				ArrayList<Viajes> viajes = viajesDAO.getLista();
+
+				for (Viajes viaj : viajes) {
+					viaj.setCamion(camionesDAO.findId(viajesDAO.getCamionId(viaj.getViajes_ID())));
+
+				}
+
 				Viajes viaje = new Viajes();
 
 				viaje.setUserID(request.getParameter("userID"));

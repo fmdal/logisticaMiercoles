@@ -2,9 +2,6 @@
 <jsp:include page="navbar.jsp"></jsp:include>
 
 
-// asd
-
-
 
 <div class="container" style="padding: 20px">
 	<form method="post" action="UsersController">

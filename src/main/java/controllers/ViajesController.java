@@ -3,6 +3,7 @@ package controllers;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +19,7 @@ import negocio.dao.iViajesDAO;
 import negocio.dao.factory.CamionesFactory;
 import negocio.dao.factory.ChoferesFactory;
 import negocio.dao.factory.ViajesFactory;
+import negocio.dao.implementacion.ViajesImplementacion;
 import negocio.dominio.Camiones;
 import negocio.dominio.Choferes;
 import negocio.dominio.Users;
@@ -29,6 +31,8 @@ import negocio.dominio.Viajes;
 @WebServlet("/ViajesController")
 public class ViajesController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static Viajes viaje = new Viajes();
+	private static 	List <Viajes> viajesList = new ArrayList<Viajes>();
 
 	/**
 	 * Default constructor.
@@ -45,7 +49,10 @@ public class ViajesController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		iViajesDAO<Viajes> viajesDAO = ViajesFactory.getImplementation("DB");
+
+		viajesList = viajesDAO.getLista();
+		
 	}
 
 	/**
@@ -153,6 +160,22 @@ public class ViajesController extends HttpServlet {
 		}
 
 		request.getRequestDispatcher(destino).forward(request, response);
+	}
+
+	public static Viajes getViaje() {
+		return viaje;
+	}
+
+	public static void setViaje(Viajes viaje) {
+		ViajesController.viaje = viaje;
+	}
+
+	public static List<Viajes> getViajesList() {
+		return viajesList;
+	}
+
+	public static void setViajesList(List<Viajes> viajesList) {
+		ViajesController.viajesList = viajesList;
 	}
 
 }
